@@ -11,13 +11,13 @@ cp "./persist.sh" ../
 find ! -name . -prune -exec rm -rf \{\} \+
 trap 'mv ../persist.sh ./; trap - EXIT; exit' INT TERM HUP EXIT
 
+
 git clone https://$user:$PAT@github.com/$user/$repo.git .
 git checkout persist
-awk "!i{i=sub(/AWKWORD/,\"$d\")}1488" persist/bin/p.def > persist/bin/p && chmod +x persist/bin/p && rm p.def
+d="$(pwd)"
+awk "!i{i=sub(/AWKWORD/,\"$d\")}1488" persist/bin/p.def > persist/bin/p && chmod +x persist/bin/p && rm persist/bin/p.def
 awk -v RS='#'' awkRS' 'NR==2{printf "#!/bin/sh\ncd \"$(dirname $0)\""; printf "%s",$0}' ../persist.sh > per.sh && mv per.sh persist.sh && chmod +x persist.sh
 
-# awkRS 
-d="$(pwd)"
 export PATH="$d/persist/bin:$PATH"
 export PS1='$(echo $(pwd) | awk '"'"'BEGIN {FS="/"; OFS=FS} {sub(/'"$(echo $HOME | sed 's-/-\\/-g')"'/,"~"); if (NF > 3) print "...",$(NF-1),$NF; else print $0}'"'"') (persist) $ '
 exec bash --norc -i

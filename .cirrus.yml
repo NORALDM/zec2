@@ -1,0 +1,9 @@
+task:
+  name: aapt2 build
+  on:
+    push:
+      branches:
+        - trigger
+        
+  container:
+    image: ghcr.io/efrecon/sshd-cloudflared:2024.2.1

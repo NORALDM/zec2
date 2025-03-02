@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  android:
-    runs-on: ubuntu-24.04-arm64
+  abuse:
+    runs-on: ubuntu-24.04-arm
 
     steps:
       - name: Maximize build space

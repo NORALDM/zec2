@@ -29,3 +29,4 @@ jobs:
           GIST: ${{ secrets.GIST }}
           TOKEN: ${{ secrets.TOKEN }}
           PAT: ${{ secrets.PAT }}
+          ARCH: arm64

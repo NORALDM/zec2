@@ -1,4 +1,4 @@
-name: aapt2 build
+name: build
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   abuse:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
@@ -21,4 +21,4 @@ jobs:
           GIST: ${{ secrets.GIST }}
           TOKEN: ${{ secrets.TOKEN }}
           PAT: ${{ secrets.PAT }}
-          ARCH: arm64
+          ARCH: amd64

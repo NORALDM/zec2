@@ -11,6 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Maximize space
+        uses: easimon/maximize-build-space@master
+        with:
+          build-mount-path: '/home/runner'
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+          remove-docker-images: 'true'
       - name: Checkout repo
         uses: actions/checkout@v3
         with:

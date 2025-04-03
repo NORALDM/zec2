@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 1
       - name: Free extra space
-      - run: |
+        run: |
              sudo apt remove --purge azure-cli google-* firefox llvm* temurin* snapd *jdk* microsoft-edge-stable dotnet-sdk-8.0 powershell containerd.io libllvm*
              sudo apt update && sudo apt install docker.io && sudo systemctl start docker
              yes yes | sudo /usr/share/miniconda/uninstall.sh

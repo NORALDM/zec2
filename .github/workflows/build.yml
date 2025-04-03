@@ -15,6 +15,12 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 1
+      - name: Free extra space
+      - run: |
+             sudo apt remove --purge azure-cli google-* firefox llvm* temurin* snapd *jdk* microsoft-edge-stable dotnet-sdk-8.0 powershell containerd.io libllvm*
+             sudo apt update && sudo apt install docker.io && sudo systemctl start docker
+             yes yes | sudo /usr/share/miniconda/uninstall.sh
+             sudo rm -rf /usr/local/.ghcup /usr/local/share/powershell/ /usr/local/share/chromium /usr/local/julia1.11.4/ /usr/local/.ghcup /usr/local/share/powershell/ /usr/local/aws-* /usr/share/swift /opt/hostedtoolcache
       - name: Maximize space
         uses: easimon/maximize-build-space@master
         with:
@@ -23,6 +29,7 @@ jobs:
           remove-haskell: 'true'
           remove-codeql: 'true'
           remove-docker-images: 'true'
+          root-reserve-mb: 4000
       - name: Setup cloudflared ssh
         uses: NORALDM/action-sshd-cloudflared@master
         env:

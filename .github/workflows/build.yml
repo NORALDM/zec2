@@ -34,7 +34,7 @@ jobs:
              sudo apt remove --purge azure-cli google-* firefox llvm* temurin* snapd *jdk* microsoft-edge-stable dotnet-sdk-8.0 powershell containerd.io libllvm*
              if [ "$undocker" = "false" ]; then
                      sudo apt update && sudo apt install docker.io && sudo systemctl start docker
-             done
+             fi
              yes yes | sudo /usr/share/miniconda/uninstall.sh
              sudo rm -rf /usr/local/.ghcup /usr/local/share/powershell/ /usr/local/share/chromium /usr/local/julia1.11.4/ /usr/local/.ghcup /usr/local/share/powershell/ /usr/local/aws-* /usr/share/swift /opt/hostedtoolcache
       - name: Maximize space for docker build

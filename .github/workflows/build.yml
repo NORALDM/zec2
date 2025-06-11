@@ -21,7 +21,7 @@ jobs:
              if [ -f ./build-info ]; then
                  if grep -q '^docker-build=1$' ./build-info; then
                      echo "undocker=false" > "$GITHUB_OUTPUT"
-                     echo "free-space=true" > "$GITHUB_OUTPUT"
+                     echo "free-space=true" >> "$GITHUB_OUTPUT"
                  elif grep -q '^free-space=1$' ./build-info; then
                      echo "free-space=true" > "$GITHUB_OUTPUT"
                  fi
@@ -33,7 +33,7 @@ jobs:
         run: |
              sudo apt remove --purge azure-cli google-* firefox llvm* temurin* snapd *jdk* microsoft-edge-stable dotnet-sdk-8.0 powershell containerd.io libllvm*
              if [ "$undocker" = "false" ]; then
-                     sudo apt update && sudo apt install docker.io && sudo systemctl start docker
+                     sudo apt update; sudo apt install docker.io; sudo systemctl start docker
              fi
              yes yes | sudo /usr/share/miniconda/uninstall.sh
              sudo rm -rf /usr/local/.ghcup /usr/local/share/powershell/ /usr/local/share/chromium /usr/local/julia1.11.4/ /usr/local/.ghcup /usr/local/share/powershell/ /usr/local/aws-* /usr/share/swift /opt/hostedtoolcache
